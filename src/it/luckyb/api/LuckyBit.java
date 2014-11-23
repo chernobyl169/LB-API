@@ -43,16 +43,52 @@ public class LuckyBit {
 		return ObjectFactory.getGame(APIConnector.get("getgamebyname", name), name);
 	}
 	/**
-	 * Get all bets placed from a given address
+	 * Get recent bets by page.
+	 * @param limit
+	 * The number of bets per page
+	 * @param page
+	 * The page number to retrieve
+	 * @return
+	 * A list of the bets matching the request
+	 * @throws IOException
+	 */
+	public static List<Bet> getBets(int limit, int page) throws IOException {
+		return ObjectFactory.getBets(APIConnector.get("getbets", "", limit, page));
+	}
+	/**
+	 * Get bets by date.
+	 * @param yyyy
+	 * The year of the date to query
+	 * @param mm
+	 * The numeric month of the date to query
+	 * @param dd
+	 * The numeric day of the date to query
+	 * @param limit
+	 * The number of bets per page
+	 * @param page
+	 * The page number requested
+	 * @return
+	 * A list of bets matching the query
+	 * @throws IOException
+	 */
+	public static List<Bet> getBetsByDate(int yyyy, int mm, int dd, int limit, int page) throws IOException {
+		return ObjectFactory.getBets(APIConnector.get("getbetsbydate", String.format("%4d%2d%2d", yyyy, mm, dd), limit, page));
+	}
+	/**
+	 * Get bets placed from a given address.
 	 * @param address
 	 * The address bets were placed from
+	 * @param limit
+	 * The number of bets per page
+	 * @param page
+	 * The page number requested
 	 * @return
-	 * A list of all bets played from that address
+	 * A list of bets matching the query
 	 * @throws
 	 * IOException if there was a communication error
 	 */
-	public static List<Bet> getBetsByAddress(String address) throws IOException {
-		return ObjectFactory.getBets(APIConnector.get("getbetsbyaddress", address));
+	public static List<Bet> getBetsByAddress(String address, int limit, int page) throws IOException {
+		return ObjectFactory.getBets(APIConnector.get("getbetsbyaddress", address, limit, page));
 	}
 	/**
 	 * Get all bets placed in a given transaction
@@ -64,7 +100,7 @@ public class LuckyBit {
 	 * IOException if there was a communication error
 	 */
 	public static List<Bet> getBetsByTXID(String txid) throws IOException {
-		return ObjectFactory.getBets(APIConnector.get("getbetsbytxid", txid));
+		return ObjectFactory.getBets(APIConnector.get("getbetsbytxid", txid, 200, 1));
 	}
 	/**
 	 * Get a single bet by transaction ID and VOut
