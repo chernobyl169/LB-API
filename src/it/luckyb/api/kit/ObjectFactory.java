@@ -38,7 +38,15 @@ public class ObjectFactory {
 		@Override
 		public String txOut() { return txout; }
 		@Override
-		public String game() { return game; }		
+		public String game() { return game; }
+		@Override
+		public String toString() {
+			return String.format(
+				"%s - %-5.3f x" +
+					((result<2&&result!=1.0)?"%-1.1f":"%-1.0f") +
+					" = %-1.3f (%s)",
+				address, amount, result, payout, game);
+		}
 	}
 	public static Bet getBet(JSONObject o, String txidvout) {
 		if (o == null || o.length() == 0 || !o.has(txidvout)) return null;
@@ -86,6 +94,8 @@ public class ObjectFactory {
 		public double minBet() { return minbet; }
 		@Override
 		public double[] payline() { return payline; }
+		@Override
+		public String toString() { return color; }
 	}
 	public static Game getGame(JSONObject o, String name) {
 		if (o == null || o.length() == 0 || !o.has(name)) return null;
@@ -114,6 +124,8 @@ public class ObjectFactory {
 		public String date() { return date; }
 		@Override
 		public String data() { return data; }
+		@Override
+		public String toString() { return String.format("%s: %s", date, data); }
 	}
 	public static Daily getDaily(JSONObject o) {
 		if (o == null || o.length() == 0) return null;
