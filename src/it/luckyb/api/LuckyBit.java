@@ -72,7 +72,7 @@ public class LuckyBit {
 	 * @throws IOException
 	 */
 	public static List<Bet> getBetsByDate(int yyyy, int mm, int dd, int limit, int page) throws IOException {
-		return ObjectFactory.getBets(APIConnector.get("getbetsbydate", String.format("%4d%2d%2d", yyyy, mm, dd), limit, page));
+		return ObjectFactory.getBets(APIConnector.get("getbetsbydate", String.format("%4d-%2d-%2d", yyyy, mm, dd), limit, page));
 	}
 	/**
 	 * Get bets placed from a given address.
