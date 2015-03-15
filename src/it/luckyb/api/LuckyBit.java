@@ -72,7 +72,7 @@ public class LuckyBit {
 	 * @throws IOException
 	 */
 	public static List<Bet> getBetsByDate(int yyyy, int mm, int dd, int limit, int page) throws IOException {
-		return ObjectFactory.getBets(APIConnector.get("getbetsbydate", String.format("%4d-%2d-%2d", yyyy, mm, dd), limit, page));
+		return ObjectFactory.getBets(APIConnector.get("getbetsbydate", String.format("%4d-%02d-%02d", yyyy, mm, dd), limit, page));
 	}
 	/**
 	 * Get bets placed from a given address.
@@ -142,7 +142,7 @@ public class LuckyBit {
 	 * IOException if there was a communication error
 	 */
 	public static Daily getHashByDate(int year, int month, int day) throws IOException {
-		return ObjectFactory.getDaily(APIConnector.get("gethashbydate", String.format("%4d-%2d-%2d", year, month, day)));
+		return ObjectFactory.getDaily(APIConnector.get("gethashbydate", String.format("%4d-%02d-%02d", year, month, day)));
 	}
 	/**
 	 * Get a past secret seed
@@ -159,6 +159,6 @@ public class LuckyBit {
 	 * IOException if there was a communication error
 	 */
 	public static Daily getKeyByDate(int year, int month, int day) throws IOException {
-		return ObjectFactory.getDaily(APIConnector.get("getkeybydate", String.format("%4d-%2d-%2d", year, month, day)));
+		return ObjectFactory.getDaily(APIConnector.get("getkeybydate", String.format("%4d-%02d-%02d", year, month, day)));
 	}
 }
