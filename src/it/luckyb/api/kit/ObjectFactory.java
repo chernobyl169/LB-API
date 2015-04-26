@@ -47,6 +47,8 @@ public class ObjectFactory {
 					" = %-1.3f (%s)",
 				address, amount, result, payout, game);
 		}
+		@Override
+		public int compareTo(Bet b) { return timestamp.compareTo(b.timestamp()); }
 	}
 	public static Bet getBet(JSONObject o, String txidvout) {
 		if (o == null || o.length() == 0 || !o.has(txidvout)) return null;

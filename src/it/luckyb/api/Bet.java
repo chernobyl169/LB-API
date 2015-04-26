@@ -4,7 +4,7 @@ package it.luckyb.api;
  * A class representing a single bet placed on Lucky Bit.
  * @author stingleword
  */
-public abstract class Bet {
+public abstract class Bet implements Comparable<Bet> {
 	/**
 	 * @return
 	 * The amount of bitcoin wagered
